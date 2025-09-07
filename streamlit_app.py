@@ -7,11 +7,14 @@ st.title("Is this Job ad a fake?")
 #)
 job_ad = st.text_input("Copy and paste the job ad here:", key='job_ad_text')
 
-#with open('model_tfidf.pickle', 'rb') as f:
-#    model = pickle.load(f)
+st.write('WARNING: NOT ACCURATE.  Please return after Sep 9 for a fully functioning version.  Thanks!')
+
+
+with open('model_log_cv.pkl', 'rb') as f:
+    model = pickle.load(f)
 
 if st.button('check if fraud'):
-    pred = 1 #model.predict(job_ad)
+    pred = model.predict(job_ad)[0,1]
     if pred == 1:
         st.write("The model predicts this job ad is fraudulent!")
     else:
